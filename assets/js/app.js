@@ -138,6 +138,7 @@
       } else if (msg.data.loggedIn !== undefined) {
         if (msg.data.loggedIn) {
           var username = msg.data.username;
+            console.log('dddd');
           userList.append(
             '<li id="user-' + msg.data.id + '">' + username + '</li>'
           );
@@ -157,7 +158,7 @@
     chatWindow.height(height - 130);
   };
 
-  setInterval(setChatHeight, 100);
+  setInterval(setChatHeight, 10);
 
   var getPastMessages = function () {
     socket.get('/message', function (messages) {
