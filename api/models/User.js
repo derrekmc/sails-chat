@@ -22,6 +22,7 @@ module.exports = {
       type: 'string',
       required: true
     },
+
     loggedIn: {
       type: 'boolean',
       defaultsTo: 0,

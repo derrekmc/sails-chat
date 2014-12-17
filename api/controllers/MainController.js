@@ -22,25 +22,25 @@ module.exports = {
     if (req.session.user) {
       User.findOne(req.session.user.id, function (err, user) {
         if (err) {
-          res.view('home/index.ejs', { error: 'Error logging in' });
+          res.view('home/index', { error: 'Error logging in' });
         } else {
           if (user) {
             Message.subscribe(req.socket);
-            res.view('home/index.ejs', { user: user, error: false });
+            res.view('home/members', { user: user, error: false });
           } else {
-            res.view('home/index.ejs', { user: false, error: 'Error finding user' });
+            res.view('home/index', { user: false, error: 'Error finding user' });
           }
         }
       });
     } else {
-      res.view('home/index.ejs', { user: false, error: false });
+      res.view('home/index', { user: false, error: false });
     }
   },
 
   login: function (req, res) {
 
     User.findOneByUsername(req.param('username'), function (err, user) {
-      if (err) res.view('home/index', { user: false, error: 'Error finding user.' });
+      if (err) res.view('home/login', { user: false, error: 'Error finding user.' });
 
       if (user) {
         var match = bcrypt.compareSync(req.param('password'), user.password);
@@ -48,7 +48,7 @@ module.exports = {
         if (match) {
           user.loggedIn = 1;
           user.save(function (err) {
-            if (err) res.view('home/index', { error: 'Error logging in', user: false });
+            if (err) res.view('home/login', { error: 'Error logging in', user: false });
 
             User.publishUpdate(user.id, { id: user.id, username: user.username, loggedIn: 1 });
 

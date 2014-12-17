@@ -38,9 +38,17 @@ module.exports.routes = {
 
   'get /logout': 'MainController.logout',
 
+    'get /members': {
+        view: 'home/members'
+    },
+
   '/register': {
     view: 'home/register'
   }
+
+
+
+
 
   /*
   // But what if you want your home page to display
