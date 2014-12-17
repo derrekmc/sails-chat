@@ -26,9 +26,9 @@ module.exports = {
         } else {
           if (user) {
             Message.subscribe(req.socket);
-            res.view('home/members', { user: user, error: false });
+            res.view('home/members', { user: user, error: false, title:'Members Area' });
           } else {
-            res.view('home/index', { user: false, error: 'Error finding user' });
+            res.view('home/index', { user: false, error: 'Error finding user', title:'hola' });
           }
         }
       });
